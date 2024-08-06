@@ -1,0 +1,32 @@
+h1 {
+    font-size: 2rem;
+}
+
+.productos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1.5rem;
+}
+
+.producto01,
+.producto02,
+.producto03 {
+    background-color: orange;
+    border-radius: 20px;
+    text-align: center;
+    width: 200px;
+}
+
+.total {
+    font-size: 1.5rem;
+}
+
+.caja{
+    background-color: blue;
+}
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}
