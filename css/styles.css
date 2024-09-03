@@ -18,7 +18,7 @@ h1 {
 
 .navbar {
     background-color: orange;
-    width: 99vw;
+    width: 100%;
 }
 
 .active {
@@ -28,7 +28,7 @@ h1 {
 }
 
 .banner-estilado {
-    width: 100vw;
+    width: 100%;
     height: 70vh;
 
 }
@@ -161,7 +161,6 @@ footer {
     text-align: center;
     font-size: 1.2rem;
     font-weight: bolder;
-    ;
     background-color: orange;
 }
 
@@ -184,4 +183,54 @@ footer p {
 .dark-mode {
     background-color: black;
     color: white;
+}
+
+
+/* Medias queries para dispositivos moviles*/
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .navbar {
+        width: 100%;
+    }
+
+    .banner-estilado {
+        height: 50vh;
+    }
+
+    .productos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .estilado-producto {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .estilado-burguer {
+        width: 200px;
+        display: block;
+        margin: 0 auto;
+    }
+    
+
+    .botones-agregar button,
+    .botones-eliminar button,
+    .boton-vaciarCarrito button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .carrito li {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .total {
+        font-size: 1.2rem;
+    }
 }
