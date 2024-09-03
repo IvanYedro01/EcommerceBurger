@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Arial", sans-serif;
 }
 
 html {
@@ -10,39 +11,70 @@ html {
 
 h1 {
     margin: 10px;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: rgb(21, 0, 78);
 }
 
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.navbar {
+    background-color: orange;
+    width: 99vw;
 }
+
+.active {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.banner-estilado {
+    width: 100vw;
+    height: 70vh;
+
+}
+
+.container-productos {
+    display: flex;
+    flex-direction: column;
+}
+
+.texto-container-productos h2 {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 50px 0px 0px 0px;
+    font-weight: bold;
+}
+
+.texto-container-productos p {
+    text-align: center;
+    margin: 20px 0px 50px 0px;
+}
+
 
 .productos {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .estilado-producto {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: orange;
-    border-radius: 20px;
+    background-color: rgb(253, 210, 130);
+    border-radius: 15px;
     text-align: center;
     width: 200px;
-    height: 400px;
-    filter: drop-shadow(1px 1px 50px rgb(22, 22, 22));
+    height: 450px;
+    filter: drop-shadow(1px 1px 20px rgb(219, 151, 4));
 }
 
-.estilado-burguer{
+.estilado-burguer {
     width: 200px;
 }
 
-.bienvenida{
+.bienvenida {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,33 +82,63 @@ h1 {
     margin: 50px 0px;
 }
 
-.parrafoBievenida-estilado, .opcionEliminar-estilado{
+.parrafoBievenida-estilado,
+.opcionEliminar-estilado {
     font-size: 1.5rem;
-    background-color:  rgb(240, 225, 197);
+    background-color: rgb(240, 225, 197);
     color: black;
 }
 
-.input{
+.input {
     margin-top: 50px;
     height: 20px;
 }
 
-.boton-cargar{
-    width: 150px;
+.botones-agregar,
+.botones-eliminar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.botones-agregar button,
+.botones-eliminar button {
+    width: 200px;
     height: 50px;
     font-size: 1rem;
     font-weight: bolder;
+    border-radius: 20px;
+    background-color: rgb(219, 151, 4);
+    color: white;
 }
 
-.carrito{
+.boton-vaciarCarrito {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.boton-vaciarCarrito button {
+    margin-top: 100px;
+    border-radius: 20px;
+    background-color: rgb(219, 4, 4);
+    color: white;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+
+.carrito {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     font-size: 1.5rem;
+    margin-top: 100px;
 }
 
-.carrito li{
+.carrito li {
     list-style-type: none;
     background-color: orange;
     border-radius: 20px;
@@ -93,42 +155,33 @@ h1 {
     font-weight: bolder;
 }
 
-footer{
+footer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: bolder;;
-    background-image: url(../assets/background.jpg);
-    background-size: contain;
-    width: 100vw;
-    height: 80px;   
+    font-size: 1.2rem;
+    font-weight: bolder;
+    ;
+    background-color: orange;
 }
 
-footer p{
+footer p {
     color: black;
-    background-color: rgb(240, 225, 197);
 }
 
 /*Cambio de tema*/
-.boton-dark-mode{
-    width: 100px;
+.boton-dark-mode {
+    width: 120px;
     height: 50px;
-    background-color: orange;
-    color: black;
+    background-color: rgb(219, 4, 4);
+    color: rgb(255, 255, 255);
     font-weight: bold;
     margin: 10px;
-    font-size: 1rem;
-    border-radius: 20px;
-}
-
-.div-contenedor-productos{
-    background-color: rgb(255, 0, 0);
+    font-size: 0.8rem;
+    border-radius: 10px;
 }
 
 .dark-mode {
     background-color: black;
     color: white;
 }
-

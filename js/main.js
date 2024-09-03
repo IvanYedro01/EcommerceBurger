@@ -1,25 +1,3 @@
-const Burgers = [
-    {
-        id: "01",
-        nombre: "cuarto de libra",
-        precio: 10000,
-        img: "../assets/Cuarto_de_libra.webp",
-    },
-    {
-        id: "02",
-        nombre: "grand tasty",
-        precio: 14000,
-        img: "../assets/Grand_tasty.png",
-    },
-    {
-        id: "03",
-        nombre: "grand leyenda",
-        precio: 16500,
-        img: "../assets/Grand_leyenda.png",
-    }
-];
-
-
 let carritoDOM = document.querySelector(".carrito");
 let parrafo = document.createElement("p");
 parrafo.innerText = "Contenido del carrito";
@@ -27,86 +5,110 @@ carritoDOM.append(parrafo);
 const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 
-const bienvenida = document.querySelector(".bienvenida");
-const parrafoBienvenida = document.createElement("p");
-parrafoBienvenida.classList.add("parrafoBievenida-estilado");
-parrafoBienvenida.innerText = "Bienvenidos al menu principal, a continuacion cargue el id del producto que desea agregar, si escribe otro numero que no esta finalizara la aplicacion ";
-bienvenida.prepend(parrafoBienvenida);
+let botonesAgregar = document.querySelector(".botones-agregar");
+
+for (let i = 0; i < 3; i++) {
+    let boton = document.createElement('button');
+    boton.innerText = "Agregar ";
+    boton.id = "btn" + (i + 1);
+    botonesAgregar.append(boton);
+}
+
+let botonesEliminar = document.querySelector('.botones-eliminar');
+
+for (let x = 0; x < 3; x++) {
+    let botonEliminar = document.createElement('button');
+    botonEliminar.innerText = "Eliminar ";
+    botonEliminar.id = "btnEliminar" + (x + 1);
+    botonesEliminar.append(botonEliminar);
+}
+
+let botonVaciar = document.querySelector(".boton-vaciarCarrito");
+let botonVaciarCarrito = document.createElement("button");
+botonVaciarCarrito.innerText = "Vaciar Carrito";
+botonVaciarCarrito.id = "btnVaciar";
+botonVaciar.append(botonVaciarCarrito);
 
 
-const opcionEliminar = document.querySelector(".opcionEliminar");
-opcionEliminar.classList.add("opcionEliminar-estilado")
-opcionEliminar.innerText = "Si desea eliminar el ultimo ponga 0";
-
-
-
-let productos = document.querySelector(".productos");
+let allBurgers = [];
 
 
 function AgregarAlCarrito(valor) {
 
     if (valor === 1) {
-        carrito.push(Burgers[0]);
-        LlenarCarritoDOM(0);
+        const existe = carrito.some(producto => producto.id === allBurgers[0].id);
+        const productoEnCarrito = carrito.find(item => item.id === allBurgers[0].id);
+
+        if (existe) {
+            productoEnCarrito.cantidad++;
+        }
+        else {
+            carrito.push({ ...allBurgers[0], cantidad: 1 });
+        }
+
+        LlenarCarritoDOM();
         Swal.fire({
             title: "Agregado con exito",
-            text: "Se ha agregado un producto al carrito",
+            text: "Se ha agregado la burger al carrito",
             icon: "success"
-          });
+        });
     } else if (valor === 2) {
-        carrito.push(Burgers[1]);
-        LlenarCarritoDOM(1);
+        const existe = carrito.some(producto => producto.id === allBurgers[1].id);
+        const productoEnCarrito = carrito.find(item => item.id === allBurgers[1].id);
+
+        if (existe) {
+            productoEnCarrito.cantidad++;
+        }
+        else {
+            carrito.push({ ...allBurgers[1], cantidad: 1 });
+        }
+
+        LlenarCarritoDOM();
         Swal.fire({
             title: "Agregado con exito",
-            text: "Se ha agregado un producto al carrito",
+            text: "Se ha agregado la burger al carrito",
             icon: "success"
-          });
+        });
     } else if (valor === 3) {
-        carrito.push(Burgers[2]);
-        LlenarCarritoDOM(2);
+        const existe = carrito.some(producto => producto.id === allBurgers[2].id);
+        const productoEnCarrito = carrito.find(item => item.id === allBurgers[2].id);
+
+        if (existe) {
+            productoEnCarrito.cantidad++;
+        }
+        else {
+            carrito.push({ ...allBurgers[2], cantidad: 1 });
+        }
+
+        LlenarCarritoDOM();
         Swal.fire({
             title: "Agregado con exito",
-            text: "Se ha agregado un producto al carrito",
+            text: "Se ha agregado la burger al carrito",
             icon: "success"
-          });
-    } else if (valor === 0 && carrito.length <= 0) {
-        Swal.fire({
-            title: "Productos insuficientes",
-            text: "No hay productos para eliminar",
-            icon: "error"
-          });
-    } else if (valor === 0 && carrito.length > 0) {
-        EliminarUltimoProducto();
-        Swal.fire({
-            title: "Eliminado con exito",
-            text: "Se ha eliminado el ultimo producto del carrito",
-            icon: "success"
-          });
-    } else if(valor > 3) {
-        Swal.fire({
-            title: "Advertencia",
-            text: "Ingrese un producto valido",
-            icon: "error"
-          });
+        });
     }
+
     localStorage.setItem('carrito', JSON.stringify(carrito));
     MostrarCarrito();
 }
 
-
-function LlenarCarritoDOM(posicion) {
+function LlenarCarritoDOM() {
     carritoDOM.innerHTML = "<p>Contenido del carrito</p>";
-    let lista = document.createElement("li");
-    lista.innerText = Burgers[posicion].nombre + " $" + Burgers[posicion].precio;
-    carritoDOM.appendChild(lista);
+    carrito.forEach(item => {
+        let lista = document.createElement("li");
+        lista.innerText = `${item.nombre} $${item.precio} x ${item.cantidad}`;
+        carritoDOM.appendChild(lista);
+    });
+    TotalCarrito();
 }
+
 
 
 function MostrarCarrito() {
     carritoDOM.innerHTML = "<p>Contenido del carrito</p>";
     carrito.forEach((item) => {
         let lista = document.createElement("li");
-        lista.innerText = item.nombre + " $" + item.precio;
+        lista.innerText = item.nombre + " $" + item.precio + "" + " x " + item.cantidad;
         carritoDOM.appendChild(lista);
     });
     TotalCarrito();
@@ -114,93 +116,177 @@ function MostrarCarrito() {
 
 
 function TotalCarrito() {
-    // let suma = 0;
-    // for (let i = 0; i < carrito.length; i++) {
-    //     suma += carrito[i].precio;
-    // }
-    let suma = carrito.reduce((accumulador, item) => accumulador + item.precio, 0);
-
+    let suma = carrito.reduce((accumulador, item) => accumulador + (item.precio * item.cantidad), 0);
     let totalCarritoDOM = document.querySelector(".total>p");
     totalCarritoDOM.innerText = "Total del carrito : $" + suma;
 }
 
 
-function EliminarUltimoProducto() {
-    carrito.pop();
-    if (carritoDOM.lastChild) {
-        carritoDOM.removeChild(carritoDOM.lastChild);
+
+function EliminarUltimoProducto(valor) {
+
+    const productoEnCarrito = carrito.find(item => item.id === allBurgers[valor].id);
+
+    if (productoEnCarrito) {
+
+        if (productoEnCarrito.cantidad > 1) {
+            productoEnCarrito.cantidad -= 1;
+        } else {
+            const indice = carrito.indexOf(productoEnCarrito);
+            carrito.splice(indice, 1);
+        }
+
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        TotalCarrito();
+        MostrarCarrito();
+
+        Swal.fire({
+            title: "Eliminado con exito",
+            text: "Se ha eliminado la burger del carrito",
+            icon: "success"
+        });
+
+    } else {
+        Swal.fire({
+            title: "No hay burger suficiente para eliminar",
+            text: "Esta burger no está en el carrito",
+            icon: "error"
+        });
     }
-    TotalCarrito();
-    MostrarCarrito();
 }
 
+let productos = document.querySelector(".productos");
 
 function cargarProductos() {
+    fetch("../productos.json")
+        .then(response => response.json())
+        .then(datos => {
+            allBurgers = datos;
+            datos.forEach(post => {
+                const div = document.createElement("div");
+                div.classList.add("estilado-producto");
+                div.id = post.id;
+                div.innerHTML = `
+                    <p>ID: ${post.id}</p>
+                    <h2>Burguer: ${post.nombre}</h2>
+                    <p>Precio: ${post.precio}</p>
+                    <img src="${post.img}" class="estilado-burguer"></img>
+                `;
+                productos.append(div);
 
-    Burgers.forEach(burguer => {
+            });
 
-        const div = document.createElement("div");
-        div.classList.add("estilado-producto");
-        div.id = burguer.id;
-        div.innerHTML = `
-            <p>ID: ${burguer.id}</p>
-            <h2>Burguer: ${burguer.nombre}</h2>
-            <p>Precio: ${burguer.precio}</p>
-            <img src=" ${burguer.img}" class="estilado-burguer"></img>
-        `;
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Error al cargar los productos: ' + error.message
+            });
+        });
 
-
-        productos.append(div);
-    });
 }
+
 
 
 cargarProductos();
-AgregarAlCarrito();
-MostrarCarrito();
 
 
 let button = document.querySelector(".boton-dark-mode");
-let div = document.querySelectorAll(".estilado-producto");
 
 button.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+});
 
-    div.forEach(elemento => {
-        elemento.classList.toggle("div-contenedor-productos");
-        document.body.classList.toggle("dark-mode");
+
+
+const boton01 = document.getElementById('#btn1');
+const boton02 = document.querySelector('#btn2');
+const boton03 = document.querySelector('#btn3');
+
+const botonesAgregarEvento = document.querySelectorAll('.botones-agregar button');
+const botonesEliminarEvento = document.querySelectorAll('.botones-eliminar button');
+const botonVaciarCarritoEvento = document.querySelectorAll('.boton-vaciarCarrito button');
+
+
+function eventoAgregar() {
+
+    MostrarCarrito();
+
+    botonesAgregarEvento.forEach(button => {
+        button.addEventListener('click', (event) => {
+            if (event.currentTarget.id === 'btn1') {
+                AgregarAlCarrito(1);
+            }
+            else if (event.currentTarget.id === 'btn2') {
+                AgregarAlCarrito(2);
+            }
+            else if (event.currentTarget.id === 'btn3') {
+                AgregarAlCarrito(3);
+            }
+
+        });
     });
 
-});
+}
 
-const botonCargar = document.querySelector('.boton-cargar');
-const inputValue = document.querySelector('.input');
-const resultado = document.querySelector('.resultado');
+eventoAgregar();
 
-document.addEventListener('DOMContentLoaded', () => {
 
-    Swal.fire({
-        title: "Bienvenido al ecommerce de burgers!",
-        text: "A continuacion podra agregar las burgers que quiera al carrito",
-        imageUrl: "https://static.vecteezy.com/system/resources/thumbnails/017/503/957/small_2x/hot-burgers-logo-illustration-modern-burgers-emblem-art-free-vector.jpg",
-        imageWidth: 1000,
-        imageHeight: 400,
-        imageAlt: "Custom image"
-      });
+function eventoEliminar() {
 
-    inputValue.focus();
-    
-    if (botonCargar && inputValue && resultado) {
+    MostrarCarrito();
 
-        botonCargar.addEventListener('click', () => {
 
-            const valorInput = parseInt(inputValue.value);
-            resultado.textContent = `El valor ingresado es: ${valorInput}`;
+    botonesEliminarEvento.forEach(button => {
+        button.addEventListener('click', (event) => {
 
-            AgregarAlCarrito(valorInput);
+            if (event.currentTarget.id === 'btnEliminar1') {
+                EliminarUltimoProducto(0);
+            }
+            else if (event.currentTarget.id === 'btnEliminar2') {
+                EliminarUltimoProducto(1);
+            }
+            else if (event.currentTarget.id === 'btnEliminar3') {
+                EliminarUltimoProducto(2);
+            }
+
         });
-    } else {
-        resultado.innerText = "No se pudieron encontrar resultados";
-    }
-});
+    });
+}
+
+eventoEliminar();
 
 
+function VaciarCarrito() {
+
+    botonVaciarCarritoEvento.forEach(button => {
+        button.addEventListener('click', (event) => {
+            if (event.currentTarget.id === 'btnVaciar' && carrito.length > 0) {
+                carrito.length = 0;
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                MostrarCarrito();
+                TotalCarrito();
+
+                Swal.fire({
+                    title: "Carrito vacio",
+                    text: "Todos las burgers han sido eliminadas del carrito",
+                    icon: "success"
+                });
+            }
+            else {
+                Swal.fire({
+                    title: "Carrito sin burgers",
+                    text: "No hay burgers para eliminar",
+                    icon: "error"
+                });
+            }
+
+
+        })
+    })
+
+}
+
+
+VaciarCarrito();

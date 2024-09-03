@@ -1,0 +1,23 @@
+[
+    {
+        "id": "01",
+        "nombre": "cuarto de libra",
+        "precio": 10000,
+        "img": "../assets/Cuarto_de_libra.webp",
+        "cantidad": 1
+    },
+    {
+        "id": "02",
+        "nombre": "grand tasty",
+        "precio": 14000,
+        "img": "../assets/Grand_tasty.png",
+        "cantidad": 1
+    },
+    {
+        "id": "03",
+        "nombre": "grand leyenda",
+        "precio": 16500,
+        "img": "../assets/Grand_leyenda.png",
+        "cantidad": 1
+    }
+]

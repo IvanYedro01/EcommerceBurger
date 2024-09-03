@@ -4,25 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css">
     <title>Ecommerce Burgers</title>
 </head>
 
 <body>
-    <section class="header">
-        <h1>Ecommerce Burgers</h1>
-        <button class="boton-dark-mode">Cambiar el tema</button>
-    </section>
 
-    <section class="productos">
-        <!-- Esto se carga desde el JS con la funcion "cargarProductos"; -->
-    </section>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#carouselExample">
+                            <h1>ecommerce burger</h1>
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <button class="boton-dark-mode">Cambiar el tema</button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <section class="bienvenida">
-        <p class="opcionEliminar"></p>
-        <input type="text" class="input">
-        <button class="boton-cargar">Modificar el carrito</button>
-        <p class="resultado"></p>
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./assets/banner.jpg" class="banner-estilado" alt="...">
+            </div>
+        </div>
+    </div>
+
+
+    <section class="container-productos">
+
+        <div class="texto-container-productos">
+            <h2>choose & enjoy</h2>
+            <p>Next choose the burger you want to eat</p>
+        </div>
+
+        <div class="productos">
+            <!-- Esto se carga desde el JS con la funcion "cargarProductos"; -->
+        </div>
+
+        <div class="botones-agregar">
+            <!-- Estos se crean desde el JS con un ciclo For -->
+        </div>
+
+        <div class="botones-eliminar">
+            <!-- Estos se crean desde el JS con un ciclo For -->
+        </div>
+
+        <div class="boton-vaciarCarrito">
+            <!-- Estos se crean desde el JS -->
+        </div>
+
     </section>
 
     <section class="carrito">
@@ -35,12 +78,13 @@
     </section>
 
     <footer>
-        <div>
-            <p>Developed by Ivan Yedro</p>
-        </div>
+        <p>Developed by Ivan Yedro</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
 </body>
 
